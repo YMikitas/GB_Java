@@ -21,17 +21,40 @@ package Sem_04;
  * // print~5 -> bar
  */
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Sem4_HW1 {
     public static void main(String[] args) {
-        String input = "word~4";
+        System.out.println("Ведите строки: ");
+        Scanner sc = new Scanner(System.in);
+        ArrayList <String> resultList = new ArrayList<>();
+        int arrSize = 100;
 
-        String[] split = input.split("~");
-        String word = split[0];
-        String numberString = split[1];
-        int number = Integer.parseInt(numberString);
+        for (int i = 0; i < arrSize; i++) {
+            resultList.add(" ");
+        }
 
-        System.out.println(Arrays.toString(split));
+        Boolean run = true;
+        while (run) {
+            String text = sc.nextLine();
+            if (text.toLowerCase().equals("exit")) {
+                run = false;
+            }
+            else if (text.toLowerCase().contains("print")){
+                String[] split = text.split("~");
+                String numberString = split[1];
+                int indexNumber = Integer.parseInt(numberString);
+                System.out.println(resultList.get(indexNumber));
+            }
+            else {
+                String[] split = text.split("~");
+                String word = split[0];
+                String numberString = split[1];
+                int indexNumber = Integer.parseInt(numberString);
+                resultList.add(indexNumber, word);
+            }
+        }
+        sc.close();
     }
 }
